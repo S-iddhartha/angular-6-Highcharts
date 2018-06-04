@@ -1,0 +1,61 @@
+<div class="main-content">
+  <div class="section__content section__content--p30">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <h4> {{ hero.name | uppercase }} Details</h4>
+            </div>
+            <div class="card-body">
+              <!-- <p class="text-muted m-b-15">In HTML, a menu is often defined in an unordered list
+                <code>&lt;ul&gt;</code> (and styled afterwards), like this:</p> -->
+
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#">id: {{ hero.id }}</a>
+                </li>
+                <label>name:
+                  <input [(ngModel)]="hero.name" placeholder="name">
+                </label>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header">
+              <h4> My Heroes</h4>
+            </div>
+            <div class="card-body">
+              <!-- <p class="text-muted m-b-15">In HTML, a menu is often defined in an unordered list
+                <code>&lt;ul&gt;</code> (and styled afterwards), like this:</p> -->
+
+              <ul class="list-unstyled">
+                <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)" >
+                  <a href="#">id: {{ hero.id }} - {{ hero.name }}</a>
+                </li>
+              </ul>
+
+                
+              <div *ngIf="selectedHero">
+ 
+                <h2>{{ selectedHero.name | uppercase }} Details</h2>
+                <div><span>id: </span>{{selectedHero.id}}</div>
+                <div>
+                  <label>name:
+                    <input [(ngModel)]="selectedHero.name" placeholder="name">
+                  </label>
+                </div>
+                             
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
