@@ -1,37 +1,44 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { AppComponent } from './app.component';
+
+import { HighchartComponent } from './highchart/highchart.component';
+
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 
-import { AppRoutingModule } from "./app.routes";
-import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderDestopComponent } from './header-destop/header-destop.component';
-import { HeroesComponent } from './heroes/heroes.component';
-// import { HttpClient, HttpHeaders } from '@angular/common/http';
+//highchart
+import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
+import stock from 'highcharts/modules/stock.src';
+import more from 'highcharts/highcharts-more.src';
+import { HighchartFirstComponent } from './highchart-first/highchart-first.component';
+import { HighchartSecondComponent } from './highchart-second/highchart-second.component';
+
+export function highchartsModules() {
+  // apply Highcharts Modules to this array
+  return [stock, more];
+}
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    HeaderComponent,
-    SidebarComponent,
-    FooterComponent,
-    HeaderDestopComponent,
-    HeroesComponent
+    HighchartComponent,
+    HighchartFirstComponent,
+    HighchartSecondComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule
-    // HttpClient
-    
+    FormsModule,
+    ChartModule
+
   ],
-  providers: [],
+  providers: [
+  	{ provide: HIGHCHARTS_MODULES, useFactory: highchartsModules } // add as factory to your providers
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
